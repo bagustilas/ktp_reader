@@ -6,6 +6,7 @@
   Dibuat oleh  : Bagus Tilas
   GitHub       : https://github.com/bagustilas
   Date         : 13/04/2026
+  version      : 1.0.0  
 
   Jalankan:
     python ktp_http_server.py
