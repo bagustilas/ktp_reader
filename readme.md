@@ -44,7 +44,7 @@ Isi file `.env`:
 # Server
 KTP_HOST       = 0.0.0.0
 KTP_PORT       = 8080
-KTP_SERVER_IP  = 169.254.112.97
+KTP_SERVER_IP  = 192.168.1.100
 
 # File & Folder
 KTP_LOG_FILE   = ktp_data.json
@@ -85,12 +85,12 @@ Output saat server aktif:
 =======================================================
    🖥️   KTP HTTP SERVER - PT. INTI Identik
 =======================================================
-  IP Server  : 169.254.112.97
+  IP Server  : 192.168.1.100
   Port       : 8080
-  Endpoint   : POST http://169.254.112.97:8080/
+  Endpoint   : POST http://192.168.1.100:8080/
   Log KTP    : ktp_data.json
   Foto KTP   : foto_ktp/
-  Waktu      : 2026-04-13 14:00:00
+  Waktu      : 2026-01-01 08:00:00
 =======================================================
   ✅ Server aktif, menunggu data dari KTP Reader...
   🛑 Tekan Ctrl+C untuk menghentikan
@@ -108,8 +108,8 @@ Cek status server.
 ```json
 {
   "status": "online",
-  "server": "169.254.112.97:8080",
-  "waktu": "2026-04-13T14:00:00.000000",
+  "server": "192.168.1.100:8080",
+  "waktu": "2026-01-01T08:00:00.000000",
   "info": "KTP HTTP Server aktif ✅"
 }
 ```
@@ -128,11 +128,11 @@ Content-Type: application/json
 **Body (contoh):**
 ```json
 {
-  "nik": "3375042106920003",
-  "namaLengkap": "BAGUS TILAS HIDAYATULLAH",
+  "nik": "3271010101900001",
+  "namaLengkap": "NAMA LENGKAP CONTOH",
   "jenisKelamin": "LAKI-LAKI",
-  "tempatLahir": "PEKALONGAN",
-  "tanggalLahir": "21-6-1992",
+  "tempatLahir": "KOTA CONTOH",
+  "tanggalLahir": "01-01-1990",
   "agama": "ISLAM",
   "foto": "/9j/4AAQSkZJRgAB..."
 }
@@ -143,7 +143,7 @@ Content-Type: application/json
 {
   "status": "success",
   "message": "Data KTP berhasil diterima",
-  "waktu": "2026-04-13T14:02:34.123456"
+  "waktu": "2026-01-01T08:00:00.123456"
 }
 ```
 
@@ -156,15 +156,15 @@ File `ktp_data.json` berstruktur sebagai **array of objects**. Setiap kali data 
 ```json
 [
   {
-    "nik": "3375042106920003",
-    "namaLengkap": "BAGUS TILAS HIDAYATULLAH",
+    "nik": "3271010101900001",
+    "namaLengkap": "NAMA LENGKAP CONTOH",
     "jenisKelamin": "LAKI-LAKI",
-    "tempatLahir": "PEKALONGAN",
-    "tanggalLahir": "21-6-1992",
+    "tempatLahir": "KOTA CONTOH",
+    "tanggalLahir": "01-01-1990",
     "agama": "ISLAM",
-    "foto": "[BASE64 - lihat foto_ktp/3375042106920003_20260413_140234.jpg]",
-    "_waktu_baca": "2026-04-13T14:02:34.123456",
-    "_path_foto": "foto_ktp/3375042106920003_20260413_140234.jpg"
+    "foto": "[BASE64 - lihat foto_ktp/3271010101900001_20260101_080000.jpg]",
+    "_waktu_baca": "2026-01-01T08:00:00.123456",
+    "_path_foto": "foto_ktp/3271010101900001_20260101_080000.jpg"
   }
 ]
 ```
@@ -181,7 +181,7 @@ Foto dan tanda tangan (Base64) otomatis di-decode dan disimpan sebagai file JPG:
 foto_ktp/{NIK}_{YYYYMMDD}_{HHMMSS}.jpg
 ```
 
-Contoh: `foto_ktp/3375042106920003_20260413_140234.jpg`
+Contoh: `foto_ktp/3271010101900001_20260101_080000.jpg`
 
 Field yang dikenali sebagai foto: `foto`, `photo`, `image`, `gambar`, `picture`, `img`, `foto_ktp`.
 
@@ -204,12 +204,12 @@ Field yang dikenali sebagai foto: `foto`, `photo`, `image`, `gambar`, `picture`,
 
 ```bash
 # Cek status server
-curl http://169.254.112.97:8080/
+curl http://192.168.1.100:8080/
 
 # Kirim data KTP (JSON)
-curl -X POST http://169.254.112.97:8080/ \
+curl -X POST http://192.168.1.100:8080/ \
   -H "Content-Type: application/json" \
-  -d '{"nik":"3375042106920003","namaLengkap":"BUDI SANTOSO"}'
+  -d '{"nik":"3271010101900001","namaLengkap":"NAMA LENGKAP CONTOH"}'
 ```
 
 ### Menguji dengan Python
@@ -218,12 +218,12 @@ curl -X POST http://169.254.112.97:8080/ \
 import requests
 
 data = {
-    "nik": "3375042106920003",
-    "namaLengkap": "BUDI SANTOSO",
+    "nik": "3271010101900001",
+    "namaLengkap": "NAMA LENGKAP CONTOH",
     "jenisKelamin": "LAKI-LAKI"
 }
 
-response = requests.post("http://169.254.112.97:8080/", json=data)
+response = requests.post("http://192.168.1.100:8080/", json=data)
 print(response.json())
 ```
 
