@@ -20,8 +20,7 @@ Server HTTP ringan berbasis Python untuk **menerima, memproses, dan menyimpan da
 ```
 project/
 ├── ktp_http_server.py   # Script utama
-├── .env                 # Konfigurasi (buat dari .env.example)
-├── .env.example         # Template konfigurasi
+├── .env                 # Konfigurasi
 ├── ktp_data.json        # Database JSON (dibuat otomatis)
 ├── server.log           # Log aktivitas server (dibuat otomatis)
 └── foto_ktp/            # Folder penyimpanan foto KTP (dibuat otomatis)
